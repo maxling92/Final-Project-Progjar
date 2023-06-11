@@ -1,68 +1,54 @@
 version: '2'
 services:
-  #mesin1 -- copykan untuk mesin 2,3, dst
   mesin1:
     container_name: progjar-mesin-1
     image: jupyter/scipy-notebook
     user: root
+    ports:
+      - "60001:8888"
     environment:
       - "DOCKER_STACKS_JUPYTER_CMD=lab"
       - "GRANT_SUDO=yes"
     volumes:
       - ./work:/home/jovyan/work
       - ./script:/script
-    command: "sh /script/run.sh"
-    networks:
-      progjar-network:
-        ipv4_address: 172.16.16.101
+    command: bash -c "sudo chmod -R a+rwx /home/jovyan && start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''  --NotebookApp.ip='0.0.0.0' --Notebook.autoreload=True --NotebookApp.notebook_dir=/home/jovyan/work --allow-root"
   mesin2:
     container_name: progjar-mesin-2
     image: jupyter/scipy-notebook
     user: root
+    ports:
+      - "60002:8888"
     environment:
       - "DOCKER_STACKS_JUPYTER_CMD=lab"
       - "GRANT_SUDO=yes"
     volumes:
       - ./work:/home/jovyan/work
       - ./script:/script
-    command: "sh /script/run.sh"
-    networks:
-      progjar-network:
-        ipv4_address: 172.16.16.102
+    command: bash -c "sudo chmod -R a+rwx /home/jovyan && start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''  --NotebookApp.ip='0.0.0.0' --Notebook.autoreload=True --NotebookApp.notebook_dir=/home/jovyan/work --allow-root"
   mesin3:
     container_name: progjar-mesin-3
     image: jupyter/scipy-notebook
     user: root
+    ports:
+      - "60003:8888"
     environment:
       - "DOCKER_STACKS_JUPYTER_CMD=lab"
       - "GRANT_SUDO=yes"
     volumes:
       - ./work:/home/jovyan/work
       - ./script:/script
-    command: "sh /script/run.sh"
-    networks:
-      progjar-network:
-        ipv4_address: 172.16.16.103
+    command: bash -c "sudo chmod -R a+rwx /home/jovyan && start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''  --NotebookApp.ip='0.0.0.0' --Notebook.autoreload=True --NotebookApp.notebook_dir=/home/jovyan/work --allow-root"
   mesin4:
     container_name: progjar-mesin-4
     image: jupyter/scipy-notebook
     user: root
+    ports:
+      - "60004:8888"
     environment:
       - "DOCKER_STACKS_JUPYTER_CMD=lab"
       - "GRANT_SUDO=yes"
     volumes:
       - ./work:/home/jovyan/work
       - ./script:/script
-    command: "sh /script/run.sh"
-    networks:
-      progjar-network:
-        ipv4_address: 172.16.16.104
-
-networks:
-  progjar-network:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-       - subnet: 172.16.16.0/24
-         gateway: 172.16.16.1
+    command: bash -c "sudo chmod -R a+rwx /home/jovyan && start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''  --NotebookApp.ip='0.0.0.0' --Notebook.autoreload=True --NotebookApp.notebook_dir=/home/jovyan/work --allow-root"
